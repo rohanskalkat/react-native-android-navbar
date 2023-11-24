@@ -1,29 +1,3 @@
-// package com.androidnavbar
-
-// import com.facebook.react.bridge.ReactApplicationContext
-// import com.facebook.react.bridge.ReactMethod
-// import com.facebook.react.bridge.Promise
-
-// class AndroidNavbarModule internal constructor(context: ReactApplicationContext) :
-//   AndroidNavbarSpec(context) {
-
-//   override fun getName(): String {
-//     return NAME
-//   }
-
-//   // Example method
-//   // See https://reactnative.dev/docs/native-modules-android
-//   @ReactMethod
-//   override fun multiply(a: Double, b: Double, promise: Promise) {
-//     promise.resolve(a * b)
-//   }
-
-//   companion object {
-//     const val NAME = "AndroidNavbar"
-//   }
-// }
-
-
 package com.androidnavbar
 
 import android.animation.ArgbEvaluator
@@ -47,42 +21,31 @@ class AndroidNavbarModule internal constructor(context: ReactApplicationContext)
     AndroidNavbarSpec(context) {
     private val reactContext = context
 
-
     companion object {
         const val NAME = "AndroidNavbar"
     }
 
     private fun setNavigationBarTheme(activity: Activity?, light: Boolean) {
-        activity?.let { act ->
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                val window: Window = act.window
-                val decorView: View = window.decorView
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                    // For Android 11 (API level 30) and above
-                    val windowInsetsController = decorView.windowInsetsController
-                    windowInsetsController?.let { controller ->
-                        if (light) {
-                            controller.setSystemBarsAppearance(
-                                WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS,
-                                WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS
-                            )
-                        } else {
-                            controller.setSystemBarsAppearance(
-                                0,
-                                WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS
-                            )
-                        }
-                    }
+        if (activity != null) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && Build.VERSION.SDK_INT < Build.VERSION_CODES.S) {
+                val window = activity.window
+                var flags = window.decorView.systemUiVisibility
+                flags = if (light) {
+                    flags or View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
                 } else {
-                    // For Android 8 (API level 26) to Android 10 (API level 29)
-                    var flags: Int = decorView.systemUiVisibility
-                    flags = if (light) {
-                        flags or View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
-                    } else {
-                        flags and View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR.inv()
-                    }
-                    decorView.systemUiVisibility = flags
+                    flags and View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR.inv()
                 }
+                window.decorView.systemUiVisibility = flags
+            }
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                val flag = if (light) {
+                    WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS
+                } else {
+                    0
+                }
+                val insetsController = activity.window.insetsController
+                insetsController?.setSystemBarsAppearance(flag, WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS)
             }
         }
     }

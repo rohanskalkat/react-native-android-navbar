@@ -25,17 +25,30 @@ const AndroidNavbar = AndroidNavbarModule
     );
 
 export function changeNavigationBarColor(
-  color: String,
+  color: string,
   light: boolean = true,
   animated: boolean = true
 ): Promise<boolean> {
-  return AndroidNavbar.changeNavigationBarColor(color, light, animated);
+  if (Platform.OS === 'android') {
+    const LightNav = light ? true : false;
+    return AndroidNavbar.changeNavigationBarColor(color, LightNav, animated);
+  } else {
+    return Promise.resolve(false);
+  }
 }
 
 export function hideNavigationBar(): Promise<boolean> {
-  return AndroidNavbar.hideNavigationBar();
+  if (Platform.OS === 'android') {
+    return AndroidNavbar.hideNavigationBar();
+  } else {
+    return Promise.resolve(false);
+  }
 }
 
 export function showNavigationBar(): Promise<boolean> {
-  return AndroidNavbar.showNavigationBar();
+  if (Platform.OS === 'android') {
+    return AndroidNavbar.showNavigationBar();
+  } else {
+    return Promise.resolve(false);
+  }
 }

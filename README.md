@@ -29,9 +29,9 @@ const setNavBarColor = async (navColor: string) => {
 
 ```
 
-## Contributing
+## Credits
 
-See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
+This turbo module package is based on [react-native-navigation-bar-color](https://github.com/thebylito/react-native-navigation-bar-color) to support new react-native architecture.
 
 ## License
 
