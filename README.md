@@ -19,7 +19,14 @@ import {
 
 // ...
 
-const result = await multiply(3, 7);
+const setNavBarColor = async (navColor: string) => {
+  const response = await changeNavigationBarColor(navColor, true, false);
+};
+
+<Button title="Show Navigation Bar" onPress={showNavigationBar} />
+
+<Button title="Hide Navigation Bar" onPress={hideNavigationBar} />
+
 ```
 
 ## Contributing
