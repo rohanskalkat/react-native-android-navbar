@@ -24,6 +24,18 @@ const AndroidNavbar = AndroidNavbarModule
       }
     );
 
-export function multiply(a: number, b: number): Promise<number> {
-  return AndroidNavbar.multiply(a, b);
+export function changeNavigationBarColor(
+  color: String,
+  light: boolean = true,
+  animated: boolean = true
+): Promise<boolean> {
+  return AndroidNavbar.changeNavigationBarColor(color, light, animated);
+}
+
+export function hideNavigationBar(): Promise<boolean> {
+  return AndroidNavbar.hideNavigationBar();
+}
+
+export function showNavigationBar(): Promise<boolean> {
+  return AndroidNavbar.showNavigationBar();
 }

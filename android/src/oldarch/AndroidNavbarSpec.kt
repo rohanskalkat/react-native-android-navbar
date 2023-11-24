@@ -7,5 +7,7 @@ import com.facebook.react.bridge.Promise
 abstract class AndroidNavbarSpec internal constructor(context: ReactApplicationContext) :
   ReactContextBaseJavaModule(context) {
 
-  abstract fun multiply(a: Double, b: Double, promise: Promise)
+  abstract fun changeNavigationBarColor(color: String, light: Boolean, animated: Boolean, promise: Promise)
+  abstract fun hideNavigationBar(promise: Promise)
+  abstract fun showNavigationBar(promise: Promise)
 }
