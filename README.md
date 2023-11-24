@@ -11,7 +11,11 @@ npm install react-native-android-navbar
 ## Usage
 
 ```js
-import { multiply } from 'react-native-android-navbar';
+import {
+  changeNavigationBarColor,
+  hideNavigationBar,
+  showNavigationBar,
+} from 'react-native-android-navbar';
 
 // ...
 
