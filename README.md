@@ -23,7 +23,7 @@ const setNavBarColor = async (navColor: string) => {
   const response = await changeNavigationBarColor(navColor, true, false);
 };
 
-<Button title="Show Navigation Bar" onPress={() => setNavBarColor('blue')} />
+<Button title="Change Navigation Bar Color" onPress={() => setNavBarColor('blue')} />
 
 <Button title="Show Navigation Bar" onPress={showNavigationBar} />
 
