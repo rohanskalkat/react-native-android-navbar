@@ -21,8 +21,8 @@ class AndroidNavbarModule internal constructor(context: ReactApplicationContext)
     AndroidNavbarSpec(context) {
     private val reactContext = context
 
-    companion object {
-        const val NAME = "AndroidNavbar"
+    override fun getName(): String {
+        return NAME
     }
 
     private fun setNavigationBarTheme(activity: Activity?, light: Boolean) {
@@ -170,5 +170,9 @@ class AndroidNavbarModule internal constructor(context: ReactApplicationContext)
         } else {
             promise.reject("E_NO_ACTIVITY", Throwable("Tried to show the navigation bar while not attached to an Activity"))
         }
+    }
+
+    companion object {
+        const val NAME = "AndroidNavbar"
     }
 }
