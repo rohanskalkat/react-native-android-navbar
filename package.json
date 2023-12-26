@@ -1,6 +1,6 @@
 {
   "name": "react-native-android-navbar",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "react-native-android-navbar is a lightweight and efficient React Native package that provides a simple interface to customize the navigation bar on Android devices. It leverages the native Android API to allow for a seamless integration into your React Native project, enabling full control over the navigation bar appearance, including its color and visibility.",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
